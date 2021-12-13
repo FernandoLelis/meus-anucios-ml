@@ -2,7 +2,7 @@ import Contador from './Components/Contador';
 function Home() {
     return (
         <div>
-            <h2>Home</h2>
+            <h1>Home</h1>
            <Contador />
         </div>)
 }
