@@ -1,0 +1,25 @@
+{
+  "name": "meus-anucios-ml",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FernandoLelis/meus-anucios-ml.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FernandoLelis/meus-anucios-ml/issues"
+  },
+  "homepage": "https://github.com/FernandoLelis/meus-anucios-ml#readme",
+  "dependencies": {
+    "next": "^12.0.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
