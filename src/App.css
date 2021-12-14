@@ -5,12 +5,19 @@
 }
 
 body {
-    background-color: #E7E7E7;
+    background-color: #f0f0f0;
 }
 
 header {
     padding: 30px 10px;
     width: 100%;
-    min-height: 200px;
+    min-height: 250px;
     background-color: #FFF159;
+}
+
+.sectionBox {    
+    display: flex;
+    margin: auto;
+    margin-top: -80px;
+    border-radius: 8px;
 }

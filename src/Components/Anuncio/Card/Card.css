@@ -1,0 +1,53 @@
+.anuncioCard {
+    border-radius: 8px;
+    border: 1px solid #eeeeee;
+    box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.10);
+    display: flex;
+    padding: 15px;
+    align-items: flex-start;
+    background-color: #FFF;
+}
+
+.anuncioCard-image {
+    max-width: 120px;
+    margin-right: 15px;
+}
+
+.anuncioCard-title {
+    font-size: 20px;
+}
+
+.anuncioCard-categoria {
+    font-size: 16px;
+    font-weight: 400;
+    color: #777777;
+}
+
+.anuncioCard-footer {
+    display: flex;        
+    margin-top: 10px;
+    align-items: flex-end;
+}
+
+.anuncioCard-footer p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #777777;
+}
+
+.anuncioCard-price {    
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.anuncioCard-lucroBrt {
+    font-size: 26px;
+    font-weight: 700; 
+    margin-left: auto;   
+}
+
+.anuncioCard-lucroLqd {
+    font-size: 26px;
+    font-weight: 700; 
+    margin-left: auto;   
+}
