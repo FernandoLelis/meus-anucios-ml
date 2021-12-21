@@ -1,15 +1,24 @@
+import { useState } from "react";
+import Modal from "react-modal";
+import "./App.css";
+
+
 import UIContainer from "./Components/UI/Container/Container";
 import AnuncioCard from "./Components/Anuncio/Card/Card";
-import Form from "./Components/Form/Form";
-import "./App.css";
-import { useState } from "react";
+import Form from "./Components/Form";
+
+Modal.setAppElement('#root')
 
 function App() {
 
   const [modal, setModal] = useState(false);
 
-  const abrirModal = () => {
-    setModal(!modal);
+  function abrirModal() {
+    setModal(true);
+  };
+
+  function fecharModal() {
+    setModal(false);
   };
 
   const anuncio = {
@@ -29,16 +38,12 @@ function App() {
 
   return (
     <div className="App">
-      {
-        modal ?
-        <div className="modal"> 
-          <div className="modalContent">
-            <h3>Minha Modal</h3>
-          </div>
-        </div>
-        :
-        <div></div>
-      } 
+        <Modal 
+        isOpen={modal}
+        onRequestClose={fecharModal}
+        className="modalContent">         
+          <Form />        
+        </Modal>
       <header>
         <UIContainer>
           <div>
@@ -54,7 +59,7 @@ function App() {
                 <input type="search" className="form-control form-control-sm" placeholder="Buscar" />
               </div>
               <div className="col-sm">
-                <button type="button" className="btn btn-primary btn-sm"  onClick={() => abrirModal()}>Novo Anúncio</button>
+                <button type="button" className="btn btn-primary btn-sm"  onClick={abrirModal}>Novo Anúncio</button>
               </div>
             </div>  
             <div>
