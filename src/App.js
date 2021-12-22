@@ -29,11 +29,9 @@ function App() {
     "custo": 170,
     "categoria": "Celulares e SmartFones",
     "tipo": "Clássico",
-    "taxaImport": 0,
+    "taxaImport": false,
     "custoFrete": 20,    
     "margemLucro": 0,
-    "lucroBrt": 0,
-    "lucroLqd": 0
   };
 
   return (
@@ -48,18 +46,18 @@ function App() {
         <UIContainer>
           <div>
             <h1>Meus Anúncios ML</h1>              
-          </div>                        
+          </div>
+            <div className="col-sm">
+              <button type="button" className="btn btn-primary btn-sm"  onClick={abrirModal}>Novo Anúncio</button>
+            </div>                        
         </UIContainer>       
       </header>     
       <section>
         <UIContainer>
           <div className="sectionBox">
             <div className="row mb-3">
-              <div className="col-sm-10">
-                <input type="search" className="form-control form-control-sm" placeholder="Buscar" />
-              </div>
-              <div className="col-sm">
-                <button type="button" className="btn btn-primary btn-sm"  onClick={abrirModal}>Novo Anúncio</button>
+              <div className="col-sm-12">
+                <input type="search" className="form-control" placeholder="Buscar" />
               </div>
             </div>  
             <div>
