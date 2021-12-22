@@ -41,15 +41,15 @@ function App() {
         onRequestClose={fecharModal}
         className="modalContent">         
           <Form />        
-        </Modal>
+        </Modal>        
+        <div className="addAnuncio" onClick={abrirModal}>
+           +
+        </div>  
       <header>
         <UIContainer>
           <div>
             <h1>Meus Anúncios ML</h1>              
-          </div>
-            <div className="col-sm">
-              <button type="button" className="btn btn-primary btn-sm"  onClick={abrirModal}>Novo Anúncio</button>
-            </div>                        
+          </div>                      
         </UIContainer>       
       </header>     
       <section>
