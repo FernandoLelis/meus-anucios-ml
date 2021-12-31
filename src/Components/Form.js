@@ -1,5 +1,5 @@
 import { useState } from "react";
-import categoria from "../Services/categorias.json"
+import categorias from "../Services/categorias.json"
 
 
 const initialValue = {
@@ -7,14 +7,15 @@ const initialValue = {
     imageUrl: "",
     stock: 0,
     custo: 0,
-    categoria: "",
+    categoria: -1,
     tipo: "",
     taxaImport: false,
+    freteGratis: false,
     custoFrete: 0,    
     margemLucro: 0,
   };
 
-export default function Form() {
+export default function Form(props) {
 
     const [values, setValues] = useState(initialValue);
     const [freteGratis, setFreteGratis] = useState(false);
@@ -32,10 +33,12 @@ export default function Form() {
 
     function onSubmit(ev) {
         ev.preventDefault();
+        props.addEedit(values)
     };
+    
 
     return(
-        <form onSubmit={onSubmit}>              
+        <form autoComplete="off" onSubmit={onSubmit}>              
             <div className="row mb-3">
                 <input type="text" name="title" placeholder="Título" className="form-control form-control-sm" onChange={onChange} />
             </div>
@@ -49,11 +52,11 @@ export default function Form() {
                 <input type="number" name="custo" placeholder="Custo" className="form-control form-control-sm" onChange={onChange} />
             </div>
             <div className="row mb-3">
-                <select name="Categoria" className="form-select form-select-sm" onChange={onChange}>
+                <select name="categoria" className="form-select form-select-sm" onChange={onChange}>
                     <option value={-1}>Categoria</option>
                     {
-                        categoria.map((item, i) => (
-                            <option key={"categoria" + i} value={i}>{item.nome}</option>
+                        categorias.map((item, i) => (
+                            <option key={"categorias" + i} value={i}>{item.nome}</option>
                         ))
                     }
                 </select>

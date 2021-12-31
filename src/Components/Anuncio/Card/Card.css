@@ -1,23 +1,26 @@
+.card {
+    margin-bottom: 15px;
+}
 .anuncioCard {
     width: 100%;
     margin: auto;
     display: flex;
-    padding: 10px;
-    align-items: flex-start;
+    padding: 10px; 
+    align-items: flex-start;   
 }
 
 .anuncioCard-image {
     max-width: 150px;
-    margin-right: 10px;
-    align-items: center;
-    margin: 0;
+    margin-right: 10px;   
 }
 
 .anuncioCard-footer {
-    display: flex;        
-    margin-top: 20px;
-    align-items: flex-end;
+    display: flex;
+    align-self: flex-end;
     width: 100%;
+    font-size: 26px;
+    font-weight: 600;
+    margin-left: auto;
 }
 
 .anuncioCard-footer p {
@@ -25,21 +28,4 @@
     font-weight: 400;
     color: #777777;
     margin: 0;
-}
-
-.anuncioCard-price {    
-    font-size: 32px;
-    font-weight: 700;
-}
-
-.anuncioCard-lucroBrt {
-    font-size: 26px;
-    font-weight: 600; 
-    margin-left: auto;
-}
-
-.anuncioCard-lucroLqd {
-    font-size: 26px;
-    font-weight: 600; 
-    margin-left: auto;
 }

@@ -1,5 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
+import { database } from "./Services/firebase";
 import "./App.css";
 
 
@@ -22,7 +23,6 @@ function App() {
   };
 
   const anuncio = {
-    "id": 1,
     "title": "Suporte para Celular Ajustável de Metal PH36 Multifuncional",
     "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDUqYAiDXWe9PRTFughuuX0hIQCqFgSLbpDA&usqp=CAU",
     "stock": 3,
@@ -30,9 +30,21 @@ function App() {
     "categoria": "Celulares e SmartFones",
     "tipo": "Clássico",
     "taxaImport": false,
+    "freteGratis": false,
     "custoFrete": 20,    
-    "margemLucro": 0,
+    "margemLucro": 10,
   };
+
+  const addEedit = obj => {
+    database.child('anuncio').push(
+      obj,
+      error => {
+        if(error) {
+          console.log(error);
+        }
+      }
+    )
+  }  
 
   return (
     <div className="App">
@@ -40,7 +52,7 @@ function App() {
         isOpen={modal}
         onRequestClose={fecharModal}
         className="modalContent">         
-          <Form />        
+          <Form addEedit={addEedit} />        
         </Modal>        
         <div className="addAnuncio" onClick={abrirModal}>
            +
@@ -61,7 +73,7 @@ function App() {
               </div>
             </div>  
             <div>
-              <AnuncioCard anuncio={anuncio} />
+              <AnuncioCard />
             </div>
           </div>        
         </UIContainer>
