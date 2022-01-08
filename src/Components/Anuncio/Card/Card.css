@@ -1,31 +1,100 @@
 .card {
     margin-bottom: 15px;
 }
+
 .anuncioCard {
-    width: 100%;
-    margin: auto;
     display: flex;
-    padding: 10px; 
-    align-items: flex-start;   
+    padding: 10px;
 }
 
 .anuncioCard-image {
-    max-width: 150px;
-    margin-right: 10px;   
+    max-width: 120px;
+    margin-right: 10px;
+    align-self: flex-start;
+}
+
+.anuncioCard-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.anuncioCard-header {
+    flex: 1;
+}
+
+.anuncioCard-title {
+    font-size: 20px;
+    margin: 0;
+}
+
+.anuncioCard-price {
+    font-size: 24px;
+    font-weight: 600;
 }
 
 .anuncioCard-footer {
     display: flex;
-    align-self: flex-end;
     width: 100%;
-    font-size: 26px;
-    font-weight: 600;
-    margin-left: auto;
+    margin: 0;
 }
 
 .anuncioCard-footer p {
-    font-size: 16px;
-    font-weight: 400;
-    color: #777777;
-    margin: 0;
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: -5px;
+    color: #00A650;
 }
+
+.anuncioCard-lucroBrt {
+    margin: 0;
+    padding: 0;
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #00A650;
+    align-self: flex-end;
+}
+
+.anuncioCard-lucroLqd {
+    margin: 0;
+    padding: 0;
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #00A650;
+}
+
+.anuncioCard-edit {
+    margin: 0;
+    padding: 0;
+    margin-right: 10px;    
+    margin-left: auto;
+    align-self:flex-end
+}
+
+.anuncioCard-del {
+    margin: 0;
+    padding: 0;
+    align-self: flex-end;
+}
+.anuncioCard-footer button {
+    width: 22px;
+    height: 22px;
+    margin: 5px 0;
+    position: relative;
+}
+
+.icons {
+    margin: auto;
+    position: absolute;
+    width: 10px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+    
+
+

@@ -1,41 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import categorias from "../../../Services/categorias.json"
 import { database } from "../../../Services/firebase";
+import { FaPen } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
+
 import "./Card.css";
 
 
-export default function AnuncioCard() { 
-    
-  const [dadosAnuncios, setDadosAnuncios] = useState({})
+export default function AnuncioCard(props) { 
 
-  useEffect( () => {
-    database.child('anuncio').on('value', snapshot => {
-        if(snapshot.val() !== null) {
-            setDadosAnuncios({
-                ...snapshot.val()
-            })
-        }
-    })  
-  }, []);
+  const deletarAnuncio = key => {
+      if(window.confirm('Deseja realmente deletar esse anúncio?')) {
+          database.child(`anuncio/${key}`).remove(
+              err => {
+                  if(err) {
+                      console.log(err);
+                    }
+                }
+            )
+        };
+    };
        
     return(
         <> 
             {
-                Object.keys(dadosAnuncios).map(id => { 
+                Object.keys(props.dadosAnuncios).map(id => { 
                     return <div className="card" key={id}>
                         <div className="anuncioCard">            
-                            <img src={dadosAnuncios[id].imageUrl} alt={dadosAnuncios[id].title} className="anuncioCard-image"/>               
+                            <img src={props.dadosAnuncios[id].imageUrl} alt={props.dadosAnuncios[id].title} className="anuncioCard-image"/>               
                             <div className="anuncioCard-info">
-                                <h5 className="card-title">{dadosAnuncios[id].title}</h5>
-                                <footer className="anuncioCard-footer">
-                                    <div className="anuncioCard-price">
-                                        <p>Vender:</p>  
+                                <div className="anuncioCard-header">
+                                    <h1 className="anuncioCard-title">{props.dadosAnuncios[id].title}</h1>                         
+                                    <span className="anuncioCard-price">
                                         R$ {
                                             (
                                                 0
                                             ).toFixed(2)
                                         }                   
-                                    </div>
+                                    </span>
+                                </div>
+                                <footer className="anuncioCard-footer">                                    
                                     <div className="anuncioCard-lucroBrt">
                                         <p>Receber:</p>
                                         R$ {(0).toFixed(2)}                        
@@ -43,6 +47,16 @@ export default function AnuncioCard() {
                                     <div className="anuncioCard-lucroLqd">
                                         <p>Ganhar:</p>
                                         R$ {(0).toFixed(2)}                        
+                                    </div>
+                                    <div className="anuncioCard-edit">
+                                        <button className="btn btn-primary btn-sm" onClick={ () => props.setIdAtual(id, props.abrirModal()) } >
+                                            <FaPen alt="Editar" className="icons" /> 
+                                        </button>                       
+                                    </div>
+                                    <div className="anuncioCard-del" onClick={ () => deletarAnuncio(id) }> 
+                                        <button className="btn btn-danger btn-sm">
+                                            <FaTrash alt="Deletar" className="icons" /> 
+                                        </button>                        
                                     </div>
                                 </footer>
                             </div>

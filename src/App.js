@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { database } from "./Services/firebase";
+import logoFL from "./Components/img/logoFL.png";
 import "./App.css";
 
 
@@ -13,50 +14,69 @@ Modal.setAppElement('#root')
 function App() {
 
   const [modal, setModal] = useState(false);
+  let [dadosAnuncios, setDadosAnuncios] = useState({})
+  let [idAtual, setIdAtual] = useState('')
+
+  useEffect( () => {
+    database.child('anuncio').on('value', snapshot => {
+        if(snapshot.val() !== null) {
+            setDadosAnuncios({
+                ...snapshot.val()
+            })
+        } else {
+            setDadosAnuncios({});
+        }
+})  
+  }, []); 
 
   function abrirModal() {
     setModal(true);
   };
 
-  function fecharModal() {
+  function closeModal() {
     setModal(false);
   };
 
-  const anuncio = {
-    "title": "Suporte para Celular Ajustável de Metal PH36 Multifuncional",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDUqYAiDXWe9PRTFughuuX0hIQCqFgSLbpDA&usqp=CAU",
-    "stock": 3,
-    "custo": 170,
-    "categoria": "Celulares e SmartFones",
-    "tipo": "Clássico",
-    "taxaImport": false,
-    "freteGratis": false,
-    "custoFrete": 20,    
-    "margemLucro": 10,
-  };
-
   const addEedit = obj => {
-    database.child('anuncio').push(
-      obj,
-      error => {
-        if(error) {
-          console.log(error);
+
+    if (idAtual === '') {
+      database.child('anuncio').push(
+        obj,
+        error => {
+          if(error) {
+            console.log(error);
+          }
         }
-      }
-    )
-  }  
+      ) 
+    } else {
+      database.child(`anuncio/${idAtual}`).set(
+        obj,
+        err => {
+          if(err) {
+            console.log(err)
+          }
+        }
+      )
+    }
+    
+  } 
 
   return (
     <div className="App">
-        <Modal 
+      <Modal 
         isOpen={modal}
-        onRequestClose={fecharModal}
-        className="modalContent">         
-          <Form addEedit={addEedit} />        
-        </Modal>        
-        <div className="addAnuncio" onClick={abrirModal}>
-           +
-        </div>  
+        onRequestClose={closeModal}
+        className="modalContent"
+      > 
+          <div className="modal-header" onClick={ closeModal }>
+              <h5 className="modal-title">Dados do anúncio</h5>
+              <button className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>                        
+          </div>          
+          <Form { ...({ addEedit, idAtual, dadosAnuncios }) } />          
+      </Modal>        
+      <div className="addAnuncio" onClick={ () => abrirModal(setIdAtual(''))}>
+        +
+      </div>
       <header>
         <UIContainer>
           <div>
@@ -72,14 +92,18 @@ function App() {
                 <input type="search" className="form-control" placeholder="Buscar" />
               </div>
             </div>  
-            <div>
-              <AnuncioCard />
+            <div> 
+              <AnuncioCard { ...({ abrirModal, setIdAtual, dadosAnuncios, setDadosAnuncios }) } />
             </div>
           </div>        
         </UIContainer>
       </section>
       <footer>
-        <UIContainer>
+        <UIContainer> 
+          <div className="copyright">
+            <span>Desenvolvido por:</span>
+            <img className="logoFL" alt="Logo" src={logoFL} />
+          </div>
         </UIContainer>      
       </footer>   
     </div>
