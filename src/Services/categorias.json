@@ -98,5 +98,10 @@
       "nome" : "Media Streaming",
       "Clássico" : 0.11,
       "Premium" : 0.16
+    },
+    {
+      "nome" : "Nebulizadores e Inaladores",
+      "Clássico" : 0.12,
+      "Premium" : 0.17
     }
   ]

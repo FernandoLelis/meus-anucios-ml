@@ -49,7 +49,7 @@ export default function AnuncioCard(props) {
                                         R$ {(0).toFixed(2)}                        
                                     </div>
                                     <div className="anuncioCard-edit">
-                                        <button className="btn btn-primary btn-sm" onClick={ () => props.setIdAtual(id, props.abrirModal()) } >
+                                        <button className="btn btn-primary btn-sm" onClick={ () => props.setIdAtual(id, props.openModal()) } >
                                             <FaPen alt="Editar" className="icons" /> 
                                         </button>                       
                                     </div>

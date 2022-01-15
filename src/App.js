@@ -29,8 +29,9 @@ function App() {
 })  
   }, []); 
 
-  function abrirModal() {
+  function openModal() {
     setModal(true);
+    setIdAtual('');
   };
 
   function closeModal() {
@@ -63,6 +64,7 @@ function App() {
 
   return (
     <div className="App">
+      <div>
       <Modal 
         isOpen={modal}
         onRequestClose={closeModal}
@@ -72,9 +74,10 @@ function App() {
               <h5 className="modal-title">Dados do anúncio</h5>
               <button className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>                        
           </div>          
-          <Form { ...({ addEedit, idAtual, dadosAnuncios }) } />          
-      </Modal>        
-      <div className="addAnuncio" onClick={ () => abrirModal(setIdAtual(''))}>
+          <Form { ...({ addEedit, closeModal, idAtual, dadosAnuncios }) } />          
+      </Modal> 
+      </div>       
+      <div className="addAnuncio" onClick={ () => openModal()}>
         +
       </div>
       <header>
@@ -93,7 +96,7 @@ function App() {
               </div>
             </div>  
             <div> 
-              <AnuncioCard { ...({ abrirModal, setIdAtual, dadosAnuncios, setDadosAnuncios }) } />
+              <AnuncioCard { ...({ openModal, setIdAtual, dadosAnuncios, setDadosAnuncios }) } />
             </div>
           </div>        
         </UIContainer>
