@@ -1,30 +1,34 @@
 import { useEffect, useState } from "react";
 import categorias from "../Services/categorias.json";
 
+import "./Form.css";
 
-// let initialValues = {
-//     title: "",
-//     imageUrl: "",
-//     stock: "",
-//     custo: "",
-//     categoria: -1,
-//     tipo: "",
-//     freteGratis: false,
-//     custoFrete: "",
-//     taxaImport: false,
-//     custoTaxaImport: "",    
-//     margemLucro: "",
-//   };
+    let initialValues = {
+    title: "",
+    imageUrl: "",
+    estoque: "",
+    custo: "",
+    categoria: -1,
+    tipo: "",
+    taxas: {
+        frete: false,
+        import: false,
+    },
+    custoFrete: "",
+    custoTaxaImport: "",    
+    margemLucro: "",
+  };
+
 export default function Form(props) {
 
-    let [values, setValues] = useState({});
+    let [values, setValues] = useState(initialValues);
     //const [freteGratis, setFreteGratis] = useState(false);
     
 
     useEffect( () => {
         if(props.idAtual === '') {
              setValues({
-                ...{}
+                ...initialValues
             })
         } else {
              setValues({
@@ -36,7 +40,6 @@ export default function Form(props) {
     const onChange = (ev) => {
         const { name, value, type, checked} = ev.target;
         const isCheckbox = type === 'checkbox'
-        console.log('*** onChange ', name, value, checked);
 
         const data = values[name] || {};
         if (isCheckbox) {
@@ -47,19 +50,12 @@ export default function Form(props) {
         setValues({ ...values, [name]: newValue });
     };
 
-    // function toggle() {
-    //     setFreteGratis(!freteGratis)
-        
-    // };
-
     const onSubmit = (ev) => {
         ev.preventDefault();
-        const formData = new FormData(ev.target);
-        const data = Object.fromEntries(formData);
+        //const formData = new FormData(ev.target);
+        //const data = Object.fromEntries(formData);
         props.addEedit(values);
-        //props.closeModal();
-
-        console.log('*** onSubmit ', data);
+        props.closeModal();
     };
     
     return(
@@ -71,7 +67,7 @@ export default function Form(props) {
                 <input type="url" name="imageUrl" value={values.imageUrl || ''} placeholder="Imagem URL" className="form-control form-control-sm" onChange={onChange} />
             </div>
             <div className="row mb-3">
-                <input type="number" name="stock" value={values.stock || ''} placeholder="Estoque" className="form-control form-control-sm" onChange={onChange} />
+                <input type="number" name="estoque" value={values.estoque || ''} placeholder="Estoque" className="form-control form-control-sm" onChange={onChange} />
             </div>           
             <div className="row mb-3">
                 <input type="number" name="custo" value={values.custo || ''} placeholder="Custo" className="form-control form-control-sm" onChange={onChange} />
@@ -132,7 +128,7 @@ export default function Form(props) {
                 }           
             </div>
             <div className="row mb-3">
-                <input type="number" name="margemLucro" value={values.margemLucro || ''} placeholder="Margem de Lucro" className="form-control form-control-sm" onChange={onChange} />
+                <input type="number" name="margemLucro" value={values.margemLucro || ''} placeholder="Margem de Lucro %" className="form-control form-control-sm" onChange={onChange} />
             </div>
             <div className="row">
                <input type="submit" value={ props.idAtual === '' ? 'Salvar' : 'Atualizar'} className="btn btn-primary" />

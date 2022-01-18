@@ -64,19 +64,17 @@ function App() {
 
   return (
     <div className="App">
-      <div>
       <Modal 
         isOpen={modal}
         onRequestClose={closeModal}
         className="modalContent"
-      > 
+      >
           <div className="modal-header" onClick={ closeModal }>
               <h5 className="modal-title">Dados do anúncio</h5>
               <button className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>                        
           </div>          
-          <Form { ...({ addEedit, closeModal, idAtual, dadosAnuncios }) } />          
-      </Modal> 
-      </div>       
+          <Form { ...({ addEedit, closeModal, idAtual, dadosAnuncios }) } />      
+      </Modal>      
       <div className="addAnuncio" onClick={ () => openModal()}>
         +
       </div>
